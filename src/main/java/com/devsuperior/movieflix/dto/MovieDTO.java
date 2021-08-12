@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.dto;
 
+import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.entities.Movie;
 
 import java.io.Serializable;
@@ -12,6 +13,8 @@ public class MovieDTO implements Serializable {
     private Integer year;
     private String imgUrl;
     private String synopsis;
+
+    private GenreDTO genre;
 
     public MovieDTO() {
     }
@@ -32,6 +35,12 @@ public class MovieDTO implements Serializable {
         this.year = movie.getYear();
         this.imgUrl = movie.getImgUrl();
         this.synopsis = movie.getSynopsis();
+        this.genre = new GenreDTO(movie.getGenre());
+    }
+
+    public MovieDTO(Movie movie, Genre genre) {
+        this(movie);
+        this.genre = new GenreDTO(genre);
     }
 
     public Long getId() {
@@ -80,5 +89,13 @@ public class MovieDTO implements Serializable {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
+    }
+
+    public GenreDTO getGenre() {
+        return genre;
+    }
+
+    public void setGenre(GenreDTO genre) {
+        this.genre = genre;
     }
 }

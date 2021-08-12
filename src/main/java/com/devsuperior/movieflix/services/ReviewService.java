@@ -32,6 +32,6 @@ public class ReviewService {
 
         entity = repository.save(entity);
 
-        return new ReviewDTO(entity);
+        return new ReviewDTO(entity, user);
     }
 }

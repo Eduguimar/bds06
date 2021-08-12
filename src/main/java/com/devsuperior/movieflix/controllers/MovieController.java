@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,8 +19,8 @@ public class MovieController {
     private MovieService service;
 
     @GetMapping
-    public ResponseEntity<Page<MovieDTO>> findAll(Pageable pageable) {
-        Page<MovieDTO> movies = service.findAllPaged(pageable);
+    public ResponseEntity<Page<MovieDTO>> findAll(@RequestParam(name = "genreId", defaultValue = "0") Long genreId, Pageable pageable) {
+        Page<MovieDTO> movies = service.findAllPaged(genreId, pageable);
         return ResponseEntity.ok().body(movies);
     }
 
